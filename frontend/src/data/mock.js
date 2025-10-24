@@ -12,7 +12,9 @@ export const portfolioData = {
     phone: "+91 9456136336",
     socialLinks: {
       github: "https://github.com/Shashwat970",
-      linkedin: "https://linkedin.com/in/shashsri00"
+      linkedin: "https://linkedin.com/in/shashsri00",
+      instagram: "https://instagram.com/shashsri00",
+      twitter: "https://x.com/shashwat09722"
     }
   },
 
