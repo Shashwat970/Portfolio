@@ -6,7 +6,7 @@ export const portfolioData = {
     tagline: "Building the future, one line of code at a time",
     description: "An enthusiastic, passionate graduate, ready to bring value to the organization. With a drive for continued learning alongside a strong skill set in strategic project management and team leadership, I could be a successful and valued team member in any fast-paced environment. I have a geeky curiosity and a passion for coming up with innovative solutions to problems, landing things, and building bridges within teams to align for results.",
     image: "https://i.pinimg.com/280x280_RS/d1/2d/6d/d12d6dc8b0912314c1fb35ce990244d9.jpg",
-    resume: "https://drive.google.com/file/d/1a3Uc9OXeZwaV80YCB8rw_kCYF0Tz4FHB/view?usp=sharing",
+    resume: "https://drive.google.com/file/d/1HJiNd7lU8ndKPbgl1ZqpP_tnk02S6sDH/view?usp=sharing",
     location: "Uttar Pradesh, India",
     email: "shashwat09722@gmail.com",
     phone: "+91 9456136336",
