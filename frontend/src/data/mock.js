@@ -59,7 +59,7 @@ export const portfolioData = {
 
   skills: {
     frontend: [
-      { name: "React", icon: "🌐", level: 95 },
+      { name: "HTML5", icon: "🌐", level: 95 },
       { name: "Next.js", icon: "▲", level: 90 },
       { name: "TypeScript", icon: "TS", level: 88 },
       { name: "Tailwind CSS", icon: "🎨", level: 92 },
