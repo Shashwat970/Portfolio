@@ -6,8 +6,8 @@ export const portfolioData = {
     tagline: "Building the future, one line of code at a time",
     description: "An enthusiastic, passionate graduate, ready to bring value to the organization. With a drive for continued learning alongside a strong skill set in strategic project management and team leadership, I could be a successful and valued team member in any fast-paced environment. I have a geeky curiosity and a passion for coming up with innovative solutions to problems, landing things, and building bridges within teams to align for results.",
     image: "https://i.pinimg.com/280x280_RS/d1/2d/6d/d12d6dc8b0912314c1fb35ce990244d9.jpg",
-    resume: "https://drive.google.com/file/d/1HJiNd7lU8ndKPbgl1ZqpP_tnk02S6sDH/view?usp=sharing",
-    location: "Uttar Pradesh, India",
+    resume: "https://drive.google.com/file/d/1FK5UcwW4OaR5maQ0FXVLrzK6oBCuuh0_/view?usp=sharing",
+    location: "living on Earth",
     email: "shashwat09722@gmail.com",
     phone: "+91 9456136336",
     socialLinks: {
@@ -44,10 +44,10 @@ export const portfolioData = {
 
   education: [
     {
-      year: "2022 - 2026",
+      year: "2023 - 2026",
       degree: "Bachelor's in Computer Applications",
       institution: "SRM University, kathalankankur",
-      description: "Specializing in Data Science"
+      description: "Specialization in Data Science"
     },
     {
       year: "2022", 
@@ -59,7 +59,7 @@ export const portfolioData = {
 
   skills: {
     frontend: [
-      { name: "React", icon: "⚛️", level: 95 },
+      { name: "React", icon: "🌐", level: 95 },
       { name: "Next.js", icon: "▲", level: 90 },
       { name: "TypeScript", icon: "TS", level: 88 },
       { name: "Tailwind CSS", icon: "🎨", level: 92 },
