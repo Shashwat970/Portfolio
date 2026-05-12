@@ -28,7 +28,7 @@ const Contact = () => {
       ...formData,
       [name]: value
     });
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors({
@@ -40,45 +40,45 @@ const Contact = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name || formData.name.trim().length < 2) {
       newErrors.name = 'Name must be at least 2 characters long';
     }
-    
+
     if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    
+
     if (!formData.subject || formData.subject.trim().length < 5) {
       newErrors.subject = 'Subject must be at least 5 characters long';
     }
-    
+
     if (!formData.message || formData.message.trim().length < 10) {
       newErrors.message = 'Message must be at least 10 characters long';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     setIsSubmitting(true);
 
     try {
       const response = await axios.post(`${API}/contact`, formData);
-      
+
       if (response.data.success) {
         toast({
           title: "Message Sent! 🎉",
           description: response.data.message,
         });
-        
+
         setFormData({
           name: '',
           email: '',
@@ -88,12 +88,12 @@ const Contact = () => {
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      
+
       let errorMessage = "Something went wrong. Please try again.";
       if (error.response && error.response.data && error.response.data.detail) {
         errorMessage = error.response.data.detail;
       }
-      
+
       toast({
         title: "Error",
         description: errorMessage,
@@ -204,6 +204,98 @@ const Contact = () => {
               </div>
             </div>
           </div>
+
+          {/* Contact Form */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Your Name
+                  </label>
+                  <Input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="John Doe"
+                    className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.name ? 'border-red-500' : ''}`}
+                  />
+                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Email Address
+                  </label>
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="john@example.com"
+                    className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.email ? 'border-red-500' : ''}`}
+                  />
+                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Subject
+                </label>
+                <Input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Project Discussion"
+                  className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.subject ? 'border-red-500' : ''}`}
+                />
+                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Message
+                </label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  placeholder="Tell me about your project or just say hello!"
+                  className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white resize-none ${errors.message ? 'border-red-500' : ''}`}
+                />
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-full text-lg font-medium transition-all hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    Sending...
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center">
+                    <Send className="w-5 h-5 mr-2" />
+                    Send Message
+                  </div>
+                )}
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -211,3 +303,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
