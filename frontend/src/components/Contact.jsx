@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';  // ← useRef was missing!
-import emailjs from '@emailjs/browser';            // ← straight quotes
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { Send, Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -15,12 +15,7 @@ const Contact = () => {
   const { personal } = portfolioData;
   const { toast } = useToast();
   const form = useRef();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -47,31 +42,14 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     setIsSubmitting(true);
-
     try {
-      await emailjs.sendForm(            // ← was "Await" (capital A) — now fixed
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        form.current,
-        EMAILJS_PUBLIC_KEY
-      );
-
-      toast({
-        title: 'Message Sent! 🎉',
-        description: "Thanks for reaching out! I'll get back to you soon.", // ← was response.data.message (no response object) — now fixed
-      });
-
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_PUBLIC_KEY);
+      toast({ title: 'Message Sent! 🎉', description: "Thanks for reaching out! I'll get back to you soon." });
       setFormData({ name: '', email: '', subject: '', message: '' });
-
     } catch (error) {
       console.error('EmailJS error:', error);
-      toast({
-        title: 'Error',
-        description: 'Something went wrong. Please try again.', // ← was undefined errorMessage — now fixed
-        variant: 'destructive'
-      });
+      toast({ title: 'Error', description: 'Something went wrong. Please try again.', variant: 'destructive' });
     } finally {
       setIsSubmitting(false);
     }
@@ -81,12 +59,14 @@ const Contact = () => {
     { icon: Github,    href: personal.socialLinks.github,    label: 'GitHub',    color: 'hover:text-gray-900 dark:hover:text-gray-100' },
     { icon: Linkedin,  href: personal.socialLinks.linkedin,  label: 'LinkedIn',  color: 'hover:text-blue-600 dark:hover:text-blue-400' },
     { icon: Twitter,   href: personal.socialLinks.twitter,   label: 'Twitter',   color: 'hover:text-blue-400' },
-    { icon: Instagram, href: personal.socialLinks.instagram, label: 'Instagram', color: 'hover:text-pink-500' }
+    { icon: Instagram, href: personal.socialLinks.instagram, label: 'Instagram', color: 'hover:text-pink-500' },
   ];
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Get In Touch</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-6"></div>
@@ -96,6 +76,8 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
+
+          {/* Left: Contact Info */}
           <div className="space-y-8">
             <div>
               <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Let's Connect</h3>
@@ -111,7 +93,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900 dark:text-white">Email</div>
-                  <a href={`mailto:${personal.email}`} className="text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors">{personal.email}</a>
+                  <a href={`mailto:${personal.email}`} className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                    {personal.email}
+                  </a>
                 </div>
               </div>
 
@@ -121,7 +105,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900 dark:text-white">Phone</div>
-                  <a href={`tel:${personal.phone}`} className="text-green-600 dark:text-green-400 hover:text-green-700 transition-colors">{personal.phone}</a>
+                  <a href={`tel:${personal.phone}`} className="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors">
+                    {personal.phone}
+                  </a>
                 </div>
               </div>
 
@@ -142,9 +128,14 @@ const Contact = () => {
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
-                    <a key={index} href={social.href} target="_blank" rel="noopener noreferrer"
+                    <a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
                       className={`w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-md flex items-center justify-center text-gray-400 ${social.color} transition-all hover:shadow-lg hover:scale-110`}
-                      aria-label={social.label}>
+                    >
                       <IconComponent className="w-6 h-6" />
                     </a>
                   );
@@ -153,37 +144,96 @@ const Contact = () => {
             </div>
           </div>
 
+          {/* Right: Contact Form */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700">
             <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
-                  <Input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange}
-                    required placeholder="John Doe"
-                    className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.name ? 'border-red-500' : ''}`} />
+                  <Input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="John Doe"
+                    className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.name ? 'border-red-500' : ''}`}
+                  />
                   {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
-                  <Input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange}
-                    required placeholder="john@example.com"
-                    className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.email ? 'border-red-500' : ''}`} />
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="john@example.com"
+                    className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.email ? 'border-red-500' : ''}`}
+                  />
                   {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                 </div>
               </div>
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
-                <Input type="text" id="subject" name="subject" value={formData.subject} onChange={handleInputChange}
-                  required placeholder="Project Discussion"
-                  className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.subject ? 'border-red-500' : ''}`} />
+                <Input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Project Discussion"
+                  className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white ${errors.subject ? 'border-red-500' : ''}`}
+                />
                 {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange}
-                  required rows={6} placeholder="Tell me about your project or just say hello!"
-                  className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white resize-none ${errors.message ? 'border-red-500' : ''}`} />
+                <Textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  placeholder="Tell me about your project or just say hello!"
+                  className={`w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white resize-none ${errors.message ? 'border-red-500' : ''}`}
+                />
                 {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
               </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-full text-lg font-medium transition-all hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    Sending...
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center">
+                    <Send className="w-5 h-5 mr-2" />
+                    Send Message
+                  </div>
+                )}
+              </Button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
