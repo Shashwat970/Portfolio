@@ -99,26 +99,26 @@ export const portfolioData = {
       technologies: ["Python", "Transformers", "Gradio"],
       liveUrl: "https://huggingface.co/spaces/shake97/moodmate",
       githubUrl: "https://github.com/Shashwat970/Moodmate",
-      featured: true
-    },
-    {
-      id: 3,
-      title: "TITANIC DATA ANALYTICS USING PYTHON PANDAS AND MATPLOTLIB",
-      description: "This project analyzes the Titanic dataset to understand the key factors that influenced passenger survival. It involves data cleaning, exploratory data analysis (EDA), statistical testing, and building machine learning models to predict survival outcomes. The goal is to gain insights from the data and apply data science techniques for a real-world problem.",
-      image: "https://thumbs.dreamstime.com/b/titanic-iceberg-original-oil-painting-ocean-night-canvas-full-moon-stars-modern-impressionism-200487951.jpg",
-      technologies: ["python, jupyter notebook, pandas, numpy, scikit-learn, scipy, matplotlib, seaborn"],
-      liveUrl: "https://github.com/Shashwat970/Titanic_Data_Analytics",
-      githubUrl: "https://github.com/Shashwat970/Titanic_Data_Analytics",
       featured: false
     },
     {
+      id: 3,
+      title: "Sales Dashboard",
+      description: "TThe Sales-Forecasting System for E-Commerce Food Products is designed to help e-commerce platforms predict the sales of food products based on historical sales data. By analyzing various factors such as pricing, promotional offers, and seasonal trends, the system uses machine learning algorithms to forecast future demand.",
+      image: "https://thumbs.dreamstime.com/b/titanic-iceberg-original-oil-painting-ocean-night-canvas-full-moon-stars-modern-impressionism-200487951.jpg",
+      technologies: ["python, HTML5, Css"],
+      liveUrl: "https://salesdashboard-1k48.onrender.com/login",
+      githubUrl: "https://github.com/Shashwat970/salesdashboard",
+      featured: true
+    },
+    {
       id: 4,
-      title: "IP checker",
-      description: "Checks IP address for flagged, malicious IPs",
-      image: "https://blog.mozilla.org/wp-content/blogs.dir/278/files/2021/03/moz_explains_ipaddress_blog_header_1400x770.jpg",
-      technologies: ["React", "Python", "TensorFlow", "AWS"],
-      liveUrl: "https://ipcheckerpy-gnsiuwfpfkpf2f9s9zgzzk.streamlit.app/",
-      githubUrl: "https://github.com/Shashwat970/Chatbots/blob/main/Ip_checker.py",
+      title: "Crypto Neon Terminal",
+      description: "Project fetches live Bitcoin & Ethereum prices (USD) then Visualizes 30-day historical trends using interactive Plotly charts, allowing users to refresh data dynamically.It also enables CSV export of historical data",
+      image: "https://media.istockphoto.com/id/1034363382/photo/coins-of-various-cryptocurrencies.jpg?s=612x612&w=0&k=20&c=-ia1tKJeGeoJ7bWN8i6Udzq92MZ9T9vi--OFT6fVsiA=",
+      technologies: ["Css", "Python", "HTML5", "Javascript"],
+      liveUrl: "https://crypto-data-analytics.vercel.app/",
+      githubUrl: "https://github.com/Shashwat970/crypto-neon-terminal",
       featured: true
     }
   ],
