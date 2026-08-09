@@ -9,7 +9,7 @@ import { portfolioData } from '../data/mock';
 
 const EMAILJS_SERVICE_ID  = 'service_5rdil72';
 const EMAILJS_TEMPLATE_ID = 'template_mndrhum';
-const EMAILJS_PUBLIC_KEY  = 'zZhmyRTZ8w1F7s7-q';
+const EMAILJS_PUBLIC_KEY  = '62QfvGJlDCkJDKKO2wMf4';
 
 const Contact = () => {
   const { personal } = portfolioData;
