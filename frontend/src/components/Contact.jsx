@@ -7,9 +7,9 @@ import { Textarea } from './ui/textarea';
 import { useToast } from '../hooks/use-toast';
 import { portfolioData } from '../data/mock';
 
-const EMAILJS_SERVICE_ID  = 'service_5rdil72';
-const EMAILJS_TEMPLATE_ID = 'template_mndrhum';
-const EMAILJS_PUBLIC_KEY  = '62QfvGJlDCkJDKKO2wMf4';
+const EMAILJS_SERVICE_ID  = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
 const Contact = () => {
   const { personal } = portfolioData;
@@ -42,6 +42,11 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      console.error('Missing EmailJS env vars — check frontend/.env and restart the dev server.');
+      toast({ title: 'Config error', description: 'Email is not configured correctly. Contact the site owner.', variant: 'destructive' });
+      return;
+    }
     setIsSubmitting(true);
     try {
       await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_PUBLIC_KEY);

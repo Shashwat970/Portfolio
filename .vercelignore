@@ -1,9 +1,0 @@
-# .vercelignore
-node_modules/
-*.log
-.env
-.DS_Store
-backend/__pycache__/
-frontend/.cache/
-*.md
-*.zip
