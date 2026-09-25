@@ -44,6 +44,12 @@ export const portfolioData = {
 
   education: [
     {
+      year: "2026 - 2028",
+      degree: "Masters of Computer Applications",
+      institution: "IMSEC, Ghaziabad",
+      description: "Specialization in Computer Science"
+    },
+    {
       year: "2023 - 2026",
       degree: "Bachelor's in Computer Applications",
       institution: "SRM University, kathalankankur",
